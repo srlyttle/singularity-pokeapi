@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Requirements
+
+1. As a user I want to be able to load the initial page and see all the Pokemon categories
+2. As a user I want to be able to click on one category/type and see all the Pokemons that belongs to that category/type
+3. As a user I want to be able to click in one of the Pokemon and see the Pokemon basic information and statuses in a graph
+4. As a user I want in the initial page be able to search for a specific Pokemon and filter
+5. As a user I want to be able to see the same Pokemon in different categories/types if it has two or more categories/types
+
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn
+
+
+
+then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run the cypress e2e tests
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run cypress:open
+# or
+yarn cypress:open
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- select E2E Testing
+- choose your browser
+- select start E2E Testing in (your browser)
+- click on the acceptance.criteria.cy.js Spec link
 
-## Learn More
+## Technologies used
 
-To learn more about Next.js, take a look at the following resources:
+The project is built using Next.js (14) with app routing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 
+- React-Query
+- Styled-Components
+- React-ApexCharts
+- Cypress
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Architecture overview
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The latest version of Next leverages SSR and by using React-Query we are lean on the cache from the queries.
+For this reason I have created page container components that are client components are rendered within the page/server components. All data fetching is done from client components.
+Using styled components adds slightly more files and bloat to the app, having used tailwind extensively recently with next it feels like a slower workflow to create the styled components.
+Cypress was chosen for the tests because it allowed to test the AC and run various scenarios.
